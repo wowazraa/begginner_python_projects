@@ -1,4 +1,3 @@
-from data import question_data
 
 class QuizBrain:
     def __init__(self, question_list):
@@ -13,16 +12,17 @@ class QuizBrain:
         self.question_number += 1
 
     def still_has_questions(self):
-        return self.question_number < len(question_data)
+        return self.question_number < len(self.question_list)
 
     def check_answer(self, user_answer):
-        if user_answer.lower() == question_data[self.question_number]["answer"].lower():
+        correct_answer = self.question_list[self.question_number].answer
+        if user_answer.lower() == correct_answer.lower():
             print("You got it right!")
             self.score += 1
 
         else:
             print("That's wrong.")
-            print(f"The correct answer is {question_data[self.question_number]["answer"]}")
+            print(f"The correct answer is {correct_answer}")
 
         print(f"Your current score is: {self.score}/{self.question_number + 1}")
         print('\n')
